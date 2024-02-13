@@ -3,6 +3,8 @@ from aiogram.types import Message
 from aiogram.filters import Command
 from core.handlers.basic import get_start, get_help, get_other, get_chat_id, get_you
 
+from fastapi import FastAPI
+
 from core.handlers.admin import set_mt, set_voting, output_to_group
 # from core.handlers.contact import get_true_contact, get_fake_contact
 # from core.handlers.callback import do_test
@@ -34,6 +36,18 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.jobstores.redis import RedisJobStore
 from apscheduler_di import ContextSchedulerDecorator
 from core.handlers import appsched
+
+app = FastAPI()
+
+
+@app.get("/")
+def main_web_handler():
+    return "Everything ok!"
+
+
+@app.on_event("startup")
+async def on_startup():
+    asyncio.run(start())
 
 
 async def start_bot(bot: Bot):
@@ -134,5 +148,4 @@ async def start():
     finally:
         await bot.session.close()
 
-if __name__ == '__main__':
-    asyncio.run(start())
+

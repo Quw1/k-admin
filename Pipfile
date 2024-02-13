@@ -36,6 +36,7 @@ six = "==1.16.0"
 tzdata = "==2023.4"
 tzlocal = "==5.2"
 uvicorn = "*"
+fastapi = "*"
 
 [dev-packages]
 

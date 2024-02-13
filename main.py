@@ -47,7 +47,7 @@ def main_web_handler():
 
 @app.on_event("startup")
 async def on_startup():
-    asyncio.run(start())
+    await start()
 
 
 async def start_bot(bot: Bot):

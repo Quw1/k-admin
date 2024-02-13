@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cc8473bef2ebcd8b96cebdfc510e7e6ac016b20c851a19808f5b956b27b1381a"
+            "sha256": "7f7ef42d313caae46b4ec097b7ed73b02f72061441f3dc0d5350f395524faaea"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -306,6 +306,22 @@
             "index": "pypi",
             "version": "==3.1.0"
         },
+        "click": {
+            "hashes": [
+                "sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28",
+                "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==8.1.7"
+        },
+        "colorama": {
+            "hashes": [
+                "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
+                "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
+            ],
+            "markers": "platform_system == 'Windows'",
+            "version": "==0.4.6"
+        },
         "environs": {
             "hashes": [
                 "sha256:cc421ddb143fa30183568164755aa113a160e555cd19e97e664c478662032c24",
@@ -393,6 +409,14 @@
             ],
             "index": "pypi",
             "version": "==1.3.3"
+        },
+        "h11": {
+            "hashes": [
+                "sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d",
+                "sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==0.14.0"
         },
         "idna": {
             "hashes": [
@@ -688,6 +712,14 @@
             ],
             "index": "pypi",
             "version": "==5.2"
+        },
+        "uvicorn": {
+            "hashes": [
+                "sha256:3d9a267296243532db80c83a959a3400502165ade2c1338dea4e67915fd4745a",
+                "sha256:5c89da2f3895767472a35556e539fd59f7edbe9b1e9c0e1c99eebeadc61838e4"
+            ],
+            "index": "pypi",
+            "version": "==0.27.1"
         },
         "yarl": {
             "hashes": [

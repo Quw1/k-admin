@@ -2,6 +2,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
 from aiogram.filters import Command
 from core.handlers.basic import get_start, get_help, get_other, get_chat_id, get_you
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
@@ -37,17 +38,22 @@ from apscheduler.jobstores.redis import RedisJobStore
 from apscheduler_di import ContextSchedulerDecorator
 from core.handlers import appsched
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Load the ML model
+    dp, bot = await start()
+    await dp.start_polling(bot)
+    yield
+    # Clean up the ML models and release the resources
+    await bot.session.close()
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/")
 def main_web_handler():
     return "Everything ok!"
-
-
-@app.on_event("startup")
-async def on_startup():
-    await start()
 
 
 async def start_bot(bot: Bot):
@@ -143,9 +149,6 @@ async def start():
     # Everything else
     dp.message.register(get_other, F.text)
 
-    try:
-        await dp.start_polling(bot)
-    finally:
-        await bot.session.close()
+    return dp, bot
 
 

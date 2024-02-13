@@ -9,7 +9,7 @@ from core.utils.statelogin import UserState
 
 async def get_start(message: Message, bot: Bot, request: Request):
     await request.add_data_telegram(message.from_user.id, message.from_user.first_name)
-    await message.answer('шо ти хочеш')
+    await message.answer('не тягни, жмякай /love')
 
 
 async def get_other(message: Message, bot: Bot, counter: str):

@@ -11,6 +11,7 @@ class Bots:
     supergroup_id: str
     val_logs_id: str
     val_main_id: str
+    redis_url: str
 
 
 @dataclass
@@ -31,6 +32,7 @@ def get_settings(path: str):
             supergroup_id=env.str("SUPERGROUP_ID"),
             val_logs_id=env.int("VAL_LOGS_ID"),
             val_main_id=env.int("VAL_MAIN_ID"),
+            redis_url=env.str("REDIS_URL"),
         )
     )
 

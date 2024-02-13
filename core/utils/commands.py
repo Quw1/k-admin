@@ -13,8 +13,12 @@ async def set_commands(bot: Bot):
             description='не гарантую'
         ),
         BotCommand(
-            command='vote',
-            description='вибори старости 2009'
+            command='love',
+            description='кохання!'
+        ),
+        BotCommand(
+            command='lonely',
+            description='зупинити кохання :('
         ),
     ]
 

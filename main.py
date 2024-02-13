@@ -58,7 +58,7 @@ async def start():
 
     pool_connect = await create_pool()
     storage = RedisStorage.from_url(
-        'redis://default:0dVBQUGtgXPGlxBd7F6lMPCLp6sYm3lG@redis-14818.c250.eu-central-1-1.ec2.cloud.redislabs.com:14818'
+        f'redis://{settings.bots.redis_url}'
     )
     dp = Dispatcher(storage=storage)
 
@@ -81,7 +81,7 @@ async def start():
     # scheduler.start()
 
     redis_client = rediss.from_url(
-        'redis://'
+        f'redis://{settings.bots.redis_url}'
     )
 
     dp.update.middleware.register(DbSession(pool_connect))

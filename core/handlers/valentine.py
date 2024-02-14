@@ -102,12 +102,14 @@ async def valentine_get_from(call: CallbackQuery, bot: Bot, request: Request, ca
     if name_from != '':
         name_from = html.escape(name_from)
 
-    if callback_data.todo == 'add':
-        if user.username is not None:
-            frm = f'@{user.username}'
-        else:
-            frm = f'<a href="tg://user?id={user.id}">@{name_from}</a>'
+    if user.username is not None:
+        frm = f'@{user.username}'
+        admin_frm = f'@{user.username}'
     else:
+        frm = f'<a href="tg://user?id={user.id}">@{name_from}</a>'
+        admin_frm = f'<a href="tg://user?id={user.id}">@{name_from}</a>'
+
+    if callback_data.todo != 'add':
         frm = '@анонім'
 
 
@@ -121,7 +123,7 @@ async def valentine_get_from(call: CallbackQuery, bot: Bot, request: Request, ca
 
     else:
         text_user = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{frm}\n\n<tg-spoiler>{text}</tg-spoiler>"
-        text_admin = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{frm}\n\n{text}"
+        text_admin = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{admin_frm}\n\n{text}"
 
         await bot.send_message(settings.bots.val_main_id, f'{text_user}', link_preview_options=disabled_links,
                                disable_web_page_preview=True)

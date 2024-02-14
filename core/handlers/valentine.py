@@ -138,5 +138,10 @@ async def valentine_get_cancel(message: Message, bot: Bot, request: Request, sta
     await message.answer('уходиш ну і уходь')
 
 
+async def valentine_call_cancel(call: CallbackQuery, bot: Bot, request: Request, callback_data: CallbackAddAsAuthor,
+                             state: FSMContext):
+    await call.answer()
+    await call.message.edit_text('все фігня, давай по новій')
+
 
 

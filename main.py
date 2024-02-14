@@ -119,6 +119,7 @@ async def start():
     dp.message.register(valentine_get_to, Valentine.GET_TO)
     dp.message.register(valentine_get_message, Valentine.GET_MSG)
     dp.callback_query.register(valentine_get_from, CallbackAddAsAuthor.filter(), Valentine.GET_FROM)
+    dp.callback_query.register(valentine_call_cancel, CallbackAddAsAuthor.filter())
 
     # Maintenance
     dp.message.register(set_mt, F.text == "mt", F.from_user.id == settings.bots.admin_id)

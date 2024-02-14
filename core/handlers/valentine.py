@@ -99,6 +99,9 @@ async def valentine_get_from(call: CallbackQuery, bot: Bot, request: Request, ca
     photo = data.get('photo')
     user = call.from_user
     name_from = str(user.first_name or '') + '' + str(user.last_name or '')
+    if name_from != '':
+        name_from = html.escape(name_from)
+
     if callback_data.todo == 'add':
         if user.username is not None:
             frm = f'@{user.username}'

@@ -41,8 +41,7 @@ async def valentine_get_to(message: Message, bot: Bot, request: Request, state: 
             await message.answer_sticker(sticker=STICKER_1)
             await message.answer('пиши нормально - мінімум 5 літер')
         else:
-            to = message.text.replace("_", "\\_")\
-                .replace("*", "\\*")\
+            to = message.text.replace("*", "\\*")\
                 .replace("[", "\\[")\
                 .replace("`", "\\`")
             to = html.escape(to, quote=True)
@@ -70,16 +69,14 @@ async def valentine_get_message(message: Message, bot: Bot, request: Request, st
                 await message.answer('книгу пишеш? не більше 500 символів у повідомленні')
                 return
             else:
-                msg = message.text.replace("_", "\\_") \
-                    .replace("*", "\\*") \
+                msg = message.text.replace("*", "\\*") \
                     .replace("[", "\\[") \
                     .replace("`", "\\`")
                 msg = html.escape(msg, quote=True)
                 await state.update_data(text=msg)
         else:
             if message.caption is not None:
-                msg = message.caption.replace("_", "\\_") \
-                    .replace("*", "\\*") \
+                msg = message.caption.replace("*", "\\*") \
                     .replace("[", "\\[") \
                     .replace("`", "\\`")
                 msg = html.escape(msg, quote=True)

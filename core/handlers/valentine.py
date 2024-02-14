@@ -115,11 +115,13 @@ async def valentine_get_from(call: CallbackQuery, bot: Bot, request: Request, ca
 
     if photo:
         txt = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{frm}"
+        txt_admin = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{admin_frm}"
         if text:
             txt += f"\n\n<tg-spoiler>{text}</tg-spoiler>"
+            txt_admin += f"\n\n{text}"
 
         await bot.send_photo(settings.bots.val_main_id, photo, caption=txt, has_spoiler=True)
-        await bot.send_photo(settings.bots.val_logs_id, photo, caption=txt)
+        await bot.send_photo(settings.bots.val_logs_id, photo, caption=txt_admin)
 
     else:
         text_user = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{frm}\n\n<tg-spoiler>{text}</tg-spoiler>"

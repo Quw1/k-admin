@@ -16,7 +16,7 @@ STICKER_2 = "CAACAgEAAxkBAAEpdfNly4MQpCyNTavaQcNaGsQ-KBDkEQACEQEAAnY3dj8PX08Hh0b
 STICKER_3 = "CAACAgEAAxkBAAEpdfply4Sx36wJFeLzRwcN5_ZtrqmzDAAC2wEAAizw6Ebki74oV6hSZjQE"
 STICKER_4 = "CAACAgEAAxkBAAEpdfxly4TklQ2kRMv3PhsGjKOk22VUngACsQEAAnY3dj-kdqoozr_pczQE"
 STICKER_5 = "CAACAgEAAxkBAAEpdi5ly43xZE2Cm6XNKywdmMMWgigXIgACfgEAAnY3dj8UjQY54xnG7zQE"
-
+disabled_links = LinkPreviewOptions(is_disabled=True)
 
 async def valentine_start(message: Message, bot: Bot, request: Request, state: FSMContext):
     if message.chat.type != 'private':
@@ -52,9 +52,12 @@ async def valentine_get_to(message: Message, bot: Bot, request: Request, state: 
             await state.update_data(to=to)
             await state.set_state(Valentine.GET_MSG)
             await message.answer('а тепер шо ти хочеш людині сказати?\n\nнадсилай або текстове повідомлення, або кидай '
-                                 'фотку/картинку\n\nнаприклад, звідси: <a href="https://t.me/kft_cj/711">шльоп</a>\nрекомендую на картинці вказати кому та від '
+                                 'фотку/картинку\n\nнаприклад, звідси: <a href="https://t.me/kft_cj/711">шльоп</a>'
+                                 '\nрекомендую на картинці вказати кому та від '
                                  'кого ще раз :)\n\n<i>P.S: якшо хочеш шось інше за текст або фотку, то напиши '
-                                 'адмінам <b>@kft_cj_bot</b></i> 🤑')
+                                 'адмінам <b>@kft_cj_bot</b></i> 🤑',
+                                 disable_web_page_preview=True,
+                                 link_preview_options=disabled_links)
 
 
 async def valentine_get_message(message: Message, bot: Bot, request: Request, state: FSMContext):
@@ -107,7 +110,7 @@ async def valentine_get_from(call: CallbackQuery, bot: Bot, request: Request, ca
     else:
         frm = '@анонім'
 
-    disabled_links = LinkPreviewOptions(is_disabled=True)
+
     if photo:
         txt = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{frm}"
         if text:

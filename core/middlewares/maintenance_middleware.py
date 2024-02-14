@@ -15,7 +15,7 @@ class MaintenanceMiddleware(BaseMiddleware):
         data: Dict[str, Any]
     ) -> Any:
         if not event.from_user.id == settings.bots.admin_id and settings.bots.maintenance:
-            await event.answer('бот вауті')
+            await event.answer('бот вауті, почекай трохи')
         else:
             return await handler(event, data)
 

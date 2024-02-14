@@ -109,7 +109,7 @@ async def valentine_get_from(call: CallbackQuery, bot: Bot, request: Request, ca
 
     disabled_links = LinkPreviewOptions(is_disabled=True)
     if photo:
-        txt = f"нова валентинка! ❤\nдля кого: {to}\nвід кого: {frm}"
+        txt = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{frm}"
         if text:
             txt += f"\n\n<tg-spoiler>{text}</tg-spoiler>"
 

@@ -45,7 +45,7 @@ async def valentine_get_to(message: Message, bot: Bot, request: Request, state: 
                 .replace("*", "\\*")\
                 .replace("[", "\\[")\
                 .replace("`", "\\`")
-            to = html.escape(to)
+            to = html.escape(to, quote=True)
 
             if to.isascii() and ' ' not in to and '@' not in to:
                 to = '@' + to
@@ -74,7 +74,7 @@ async def valentine_get_message(message: Message, bot: Bot, request: Request, st
                     .replace("*", "\\*") \
                     .replace("[", "\\[") \
                     .replace("`", "\\`")
-                msg = html.escape(msg)
+                msg = html.escape(msg, quote=True)
                 await state.update_data(text=msg)
         else:
             if message.caption is not None:
@@ -82,7 +82,7 @@ async def valentine_get_message(message: Message, bot: Bot, request: Request, st
                     .replace("*", "\\*") \
                     .replace("[", "\\[") \
                     .replace("`", "\\`")
-                msg = html.escape(msg)
+                msg = html.escape(msg, quote=True)
                 await state.update_data(text=msg)
 
             await state.update_data(photo=message.photo[-1].file_id)

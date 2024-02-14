@@ -60,7 +60,7 @@ async def valentine_get_to(message: Message, bot: Bot, request: Request, state: 
 
 async def valentine_get_message(message: Message, bot: Bot, request: Request, state: FSMContext):
     if (not message.text) and (not message.photo):
-        await message.answer_sticker(STICKER_5)
+        await message.answer_sticker(STICKER_4)
         await message.answer('дозволені лише фотки та текстові повідомлення\n\nале якшо дуже хочеш щось інше, можеш '
                              'домовитись з адмінами <b>@kft_cj_bot</b> 🤑')
     else:

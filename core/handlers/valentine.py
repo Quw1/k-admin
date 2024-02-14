@@ -118,10 +118,11 @@ async def valentine_get_from(call: CallbackQuery, bot: Bot, request: Request, ca
 
     else:
         text = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{frm}\n\n<tg-spoiler>{text}</tg-spoiler>"
+        text_admin = f"<b>ВАЛЕНТИНКА! </b>💌\n\n<i>для кого: </i>{to}\n<i>від кого: </i>{frm}\n\n{text}"
 
         await bot.send_message(settings.bots.val_main_id, f'{text}', link_preview_options=disabled_links,
                                disable_web_page_preview=True)
-        await bot.send_message(settings.bots.val_logs_id, f'{text}', link_preview_options=disabled_links,
+        await bot.send_message(settings.bots.val_logs_id, f'{text_admin}', link_preview_options=disabled_links,
                                disable_web_page_preview=True)
 
     await request.add_valentine(user_id=user.id, username=user.username, name=name_from, to_user=to)

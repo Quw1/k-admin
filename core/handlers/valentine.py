@@ -132,9 +132,20 @@ async def valentine_get_from(call: CallbackQuery, bot: Bot, request: Request, ca
         await bot.send_message(settings.bots.val_logs_id, f'{text_admin}', link_preview_options=disabled_links,
                                disable_web_page_preview=True)
 
-    await request.add_valentine(user_id=user.id, username=user.username, name=name_from, to_user=to)
+    is_anon = callback_data.todo != 'add'
+    await request.add_valentine(user_id=user.id, username='@'+user.username, name=name_from, to_user=to, is_anon=is_anon)
     await call.message.answer_sticker(STICKER_3)
     await call.message.edit_text('зроблено! ❤')
+
+    if is_anon:
+        res1 = await request.get_valentine(from_username=to, to_user='@'+user.username)
+        res2 = await request.get_valentine(from_username='@'+user.username, to_user=to)
+        print(res1)
+        print(res2)
+        if len(res1) + len(res2) == 2:
+            txt_match = 'агов, одна з твоїх анонімних валентинок набула взаємності :)'
+            await call.message.answer(txt_match)
+            await bot.send_message(res1[0]['from_user_id'], txt_match)
     await state.clear()
     await call.answer()
 

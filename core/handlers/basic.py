@@ -12,7 +12,7 @@ async def get_start(message: Message, bot: Bot, request: Request):
     await message.answer('не тягни, жмякай /love')
 
 
-async def get_other(message: Message, bot: Bot, counter: str):
+async def get_other(message: Message, bot: Bot):
     if message.chat.type == 'private':
         await message.answer('га?')
 
@@ -21,7 +21,7 @@ async def get_help(message: Message, bot: Bot):
     await message.answer(f'не можу')
 
 
-async def get_you(message: Message, bot: Bot, counter: str):
+async def get_you(message: Message, bot: Bot):
     await message.answer('а я тебе ні (лан жартую)')
 
 

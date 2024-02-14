@@ -20,9 +20,14 @@ class Request:
     #     query = f"SELECT * FROM voting WHERE user_id='{user_id}'"
     #     return await self.connector.fetchrow(query)
 
-    async def add_valentine(self, user_id, username, name, to_user):
-        query = f"INSERT INTO valentines (from_user_id, from_username, from_name, to_user) VALUES ({user_id}, " \
-                f"'{username}', '{name}', '{to_user}')"
+    async def add_valentine(self, user_id, username, name, to_user, is_anon):
+        query = f"INSERT INTO valentines (from_user_id, from_username, from_name, to_user, is_anon) VALUES " \
+                f"({user_id}, '{username}', '{name}', '{to_user}', '{is_anon}')"
         await self.connector.execute(query)
+
+    async def get_valentine(self, from_username, to_user):
+        query = f"SELECT from_user_id FROM valentines WHERE from_username='{from_username}' AND to_user='{to_user}' AND is_anon = True"
+        return await self.connector.fetch(query)
+
 
 

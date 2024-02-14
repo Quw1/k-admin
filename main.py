@@ -28,6 +28,7 @@ from core.middlewares.maintenance_middleware import MaintenanceMiddleware
 from core.middlewares.voting_middleware import VotingMiddleware
 from core.middlewares.dbmiddleware import DbSession
 from core.middlewares.antiflood_middleware import ThrottlingMiddleware
+from core.middlewares.ban_middleware import BanMiddleware
 from core.middlewares.appschmiddleware import SchedulerMiddleware
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -47,7 +48,7 @@ async def stop_bot(bot: Bot):
 
 async def create_pool():
     return await asyncpg.create_pool(user='avnadmin', password='AVNS_IIjRhyiq2_zowhqUvOB', database='fknk',
-                                             host='tmrwld-itsquwi-db6a.aivencloud.com', port=25553)
+                                     host='tmrwld-itsquwi-db6a.aivencloud.com', port=25553)
 
 
 async def start():
@@ -85,7 +86,7 @@ async def start():
     )
 
     dp.update.middleware.register(DbSession(pool_connect))
-    dp.message.middleware.register(CounterMiddleware())
+    dp.message.middleware.register(BanMiddleware(storage=storage))
     dp.message.middleware.register(MaintenanceMiddleware())
     dp.message.middleware.register(VotingMiddleware())
     dp.message.middleware.register(ThrottlingMiddleware(redis=redis_client))
